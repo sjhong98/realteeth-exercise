@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const getCoordinatesByCity = async (city: string) => {
     const response = await axios.post(
-        `https://hydhqrohhpgwybhlhwun.supabase.co/functions/v1/geocoding`,
+        `https://paskgkdsuwcdiqytcvka.supabase.co/functions/v1/realteeth-exercise`,
         { city: city.replaceAll('-', ' ') },
         {
             headers: {
@@ -20,7 +20,7 @@ export const getCoordinatesByCity = async (city: string) => {
 
 export const getAddressByCoordinates = async (lat: number, lon: number) => {
     const response = await axios.post(
-        `https://hydhqrohhpgwybhlhwun.supabase.co/functions/v1/geocoding`,
+        `https://paskgkdsuwcdiqytcvka.supabase.co/functions/v1/realteeth-exercise`,
         { type: 'address', x: lon.toString(), y: lat.toString() },
         {
             headers: {

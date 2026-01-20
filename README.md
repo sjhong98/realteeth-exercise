@@ -28,7 +28,7 @@ bun install
 
 ```
 VITE_OPENWEATHER_API_KEY=53b3f12562e7cefd2446a68c7dd85ca2
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5ZGhxcm9oaHBnd3liaGxod3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyMDMxMzIsImV4cCI6MjA1OTc3OTEzMn0.tqL6m2AdjgZ0bYTl5hgDO8eAWfUNIEhn1q_ogJD2T1w
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhc2tna2RzdXdjZGlxeXRjdmthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2NjQ2NjIsImV4cCI6MjA3NTI0MDY2Mn0.LdXjhkOUAyKuFhuaPt2nZHhNvkYhtzpRn3dP2Papc5s
 ```
 
 ### 4. Run Development Server
@@ -290,6 +290,8 @@ Deno.serve(async (req: Request) => {
 
 ## 3. Tanstack Query 날씨 데이터 패칭 전략
 
+### 3-1. 캐싱과 리패칭
+
 본 프로젝트는 날씨라는 실시간성 데이터를 핵심 도메인으로 다루는 서비스로, 
 
 - 사용자가 체감할 수 있는 실시간성
@@ -297,15 +299,21 @@ Deno.serve(async (req: Request) => {
 
 이 두 가지 요소 사이의 트레이드오프를 고려한 데이터 패칭 전략이 필요했습니다. 
 
-### 3-1. gcTime
+### gcTime
 
 5분간 캐시를 유지하도록 함으로써, 짧은 시간 내에 동일 지역을 재조회할 경우 즉각적인 결과를 반환하도록 했습니다.
 
-### 3-2. refetchInterval
+### refetchInterval
 
 사용자가 날씨 페이지를 계속 열어두고 있는 경우, 일정 주기로 날씨 데이터가 갱신된다면 실시간성을 향상할 수 있을 것이라고 판단했습니다. 이에 수동 새로고침 없이도 5분 주기로 날씨 데이터를 갱신하도록 설정했습니다.
 
 이를 통해 네트워크 요청 수를 제한하여 성능을 최적화하면서도, 체감 가능한 실시간성을 확보하고자 했습니다.
+
+### 3-2. 병렬 API 콜
+
+또, API 호출 1회당 1곳의 날씨 데이터만 가져올 수 있었기 때문에, 최대 7번의 API 콜을 한 번에 수행해야하는 케이스가 있었습니다. 
+
+이에 최대한 수행 시간을 줄이고자, useQueries를 사용하여 각각의 queryFn들이 병렬로 실행되도록 구현하였습니다.
 
 ## 4. Tailwind CSS breakpoint prefix 이용한 반응형 구현
 
