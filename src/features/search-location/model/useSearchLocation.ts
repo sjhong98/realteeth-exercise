@@ -4,6 +4,8 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { koreaDistricts } from "@/shared/constants"
 
+const DEBOUNCE_TIME = 200
+
 export default function useSearchLocation() {
     const navigate = useNavigate()
     const isMobile = useMediaQuery('(max-width: 768px)')
@@ -28,7 +30,7 @@ export default function useSearchLocation() {
         }
         timerRef.current = setTimeout(() => {
             searchLocation()
-        }, 200)
+        }, DEBOUNCE_TIME)
     }, [search])
 
     const handleSelectLocation = useCallback((district: string) => {

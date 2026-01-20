@@ -1,2 +1,2 @@
-export { default as SearchLocation } from './SearchLocation'
+export { default as SearchLocationForm } from './SearchLocationForm'
 

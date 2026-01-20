@@ -6,7 +6,7 @@ import { useBookmark } from '@/entities/location-bookmark'
 import { CurrentLocationInfo, CurrentWeatherInfo, EmptyWeather, HourlyWeatherList, LoadingWeather, MinMaxTemperature, useWeather } from '@/entities/weather'
 import { BookmarkToggleButton, useUpdateBookmark, WeatherTitleUpdateForm } from '@/features/manage-location-bookmark'
 
-import { useCurrentDistrict } from ".."
+import { useCurrentDistrict } from "@/features/search-location"
 
 dayjs.locale('ko')
 

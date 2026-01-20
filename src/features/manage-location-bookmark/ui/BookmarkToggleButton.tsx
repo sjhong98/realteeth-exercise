@@ -6,7 +6,7 @@ import type { Weather } from '@/shared/types'
 interface BookmarkButtonProps {
     isBookmarked: boolean;
     toggleBookmark: (district: string, weather: Weather) => boolean | undefined;
-    setIsBookmarked: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsBookmarked: (bookmarked: boolean) => void;
     district: string;
     weather: Weather;
 }
@@ -17,7 +17,7 @@ export default function BookmarkToggleButton({ isBookmarked, toggleBookmark, set
             const result = toggleBookmark(district, weather)
             if (!result) return
 
-            setIsBookmarked((prev: boolean) => !prev)
+            setIsBookmarked(!isBookmarked)
         }}>
             { isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon /> }
         </div>

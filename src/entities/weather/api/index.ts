@@ -1,2 +1,2 @@
-export { getAddressByCoordinates, getCoordinatesByCity, getWeatherByCoordinates } from './weatherApi'
+export { getWeatherByCoordinates } from './weatherApi'
 

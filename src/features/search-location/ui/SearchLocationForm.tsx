@@ -2,7 +2,7 @@ import { Input } from "@/shared/ui"
 
 import { useSearchLocation } from "../model"
 
-export default function SearchLocation() {
+export default function SearchLocationForm() {
     const { filteredDistrictList, handleSelectLocation, search, setSearch } = useSearchLocation()
 
     return (

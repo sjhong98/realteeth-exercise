@@ -1,4 +1,4 @@
-import { SearchLocation } from "@/features/search-location"
+import { SearchLocationForm } from "@/features/search-location"
 import { Logo } from "@/shared/ui"
 import { BookmarkLocationPanel } from "@/widgets/bookmark-location-panel"
 import { WeatherDisplayPanel } from "@/widgets/weather-display-panel"
@@ -16,7 +16,7 @@ export default function Home() {
                         className='flex flex-col w-full md:w-[500px] gap-5 items-center'
                     >
                         <BookmarkLocationPanel />
-                        <SearchLocation />
+                        <SearchLocationForm />
                     </div>
                     <WeatherDisplayPanel />
                 </div>

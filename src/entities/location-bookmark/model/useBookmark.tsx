@@ -1,13 +1,9 @@
 import { useCallback, useEffect, useState } from "react"
 
-import { getBookmarkList } from "@/entities/location-bookmark"
+import { getBookmarkList, useBookmarkContext } from "@/entities/location-bookmark"
 
 export default function useBookmark(district?: string | null) {
-    const [isBookmarked, setIsBookmarked] = useState(false)
-    const [titleOrigin, setTitleOrigin] = useState('')
-    const [titleInput, setTitleInput] = useState('')
-    const [titleChanged, setTitleChanged] = useState(false)
-    const [titleSaved, setTitleSaved] = useState(false)
+    const { titleInput, setTitleInput, titleOrigin, setTitleOrigin, titleChanged, setTitleChanged, titleSaved, setTitleSaved, isBookmarked, setIsBookmarked } = useBookmarkContext()
 
     const checkIsBookmarked = useCallback((district: string) => {
         if (!district) {

@@ -1,4 +1,4 @@
-export { default as CurrentLocationInfo } from './CurrentLocationInto'
+export { default as CurrentLocationInfo } from './CurrentLocationInfo'
 export { default as CurrentWeatherInfo } from './CurrentWeatherInfo'
 export { default as EmptyWeather } from './EmptyWeather'
 export { default as HourlyWeatherList } from './HourlyWeatherList'
